@@ -1,23 +1,29 @@
-import React from 'react';
-import {Outlet, Link } from 'react-router-dom'
- const Navbar = ()=>{
-    return(
-        <>
-            <nav className="nav-wrapper">
-                <div className="container">
-                    <Link to="/" className="brand-logo">Products</Link>
-                    
-                    <ul className="right">
-                        <li><Link to="/">Products</Link></li>
-                        <li><Link to="/cart">My cart</Link></li>
-                        <li><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></li>
-                    </ul>
+import React,{useState,useEffect} from "react";
+import { connect } from "react-redux";
+import {Link, Outlet} from "react-router-dom";
+import img from './bootstrap-solid.svg'
+
+function Navbar(props) {
+
+        return(
+     <>
+        <nav className="navbar navbar-light bg-light justify-content-between p-2">
+             <a className="navbar-brand" href="/">
+            <img src={img} width="30" height="30" className="d-inline-block align-top" alt="Logo" />
+                      Products</a>
+                <div className="">
+                     <Link to="/" className="p-2 text-muted">Home </Link>
+                        <Link to="/admin" className="p-2 text-muted">Admin </Link>
+                         <Link to="/carts" className="p-2 text-muted">Cart </Link>
                 </div>
-            </nav>
-            <Outlet />
-         </>
-        
-    )
+        </nav>
+        <Outlet />
+     </>
+        )
+    }
+
+function mapStateToProps(state){
+    return state
 }
 
-export default Navbar;
+export default connect(mapStateToProps,null)(Navbar);
